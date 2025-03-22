@@ -1,7 +1,5 @@
-FROM ubuntu:latest
+FROM ubuntu:24.04
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
-RUN ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 
 RUN apt-get update
 RUN apt-get install python3 -y
@@ -17,5 +15,4 @@ RUN python3 -m venv ./venv
 RUN source ./venv/bin/activate && python3 -m pip install -r ./my_django/requirements.txt
 
 WORKDIR /home/ubuntu/my_django/django_docker
-
 CMD ["/home/ubuntu/venv/bin/python", "./manage.py", "runserver", "0.0.0.0:8000"]
