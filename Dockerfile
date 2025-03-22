@@ -18,5 +18,4 @@ RUN source ./venv/bin/activate && python3 -m pip install -r ./my_django/requirem
 
 WORKDIR /home/ubuntu/my_django/django_docker
 
-EXPOSE 8000
-CMD ["/home/ubuntu/venv/bin/python", "./manage.py", "runserver", "0.0.0.0:8001"]
+CMD ["/home/ubuntu/venv/bin/python", "./manage.py", "runserver", "0.0.0.0:8000"]
