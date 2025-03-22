@@ -1,5 +1,5 @@
 FROM ubuntu:24.04
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && \
     apt-get install python3 -y && \
