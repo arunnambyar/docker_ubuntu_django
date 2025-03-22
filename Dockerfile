@@ -1,10 +1,10 @@
 FROM ubuntu:24.04
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN apt-get update
-RUN apt-get install python3 -y
-RUN apt-get install python3-pip -y
-RUN apt-get install python3.12-venv -y
+RUN apt-get update && \
+    apt-get install python3 -y && \
+    apt-get install python3-pip -y && \
+    apt-get install python3.12-venv -y
 
 WORKDIR /home/ubuntu
 
