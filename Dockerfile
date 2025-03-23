@@ -6,16 +6,31 @@ RUN apt-get update && \
     apt-get install python3-pip -y && \
     apt-get install python3.12-venv -y
 
-ENV PROCESS_PATH="/home/ubuntu"
-WORKDIR $PROCESS_PATH
+# dir structure below
+# /home/ubuntu  (PROCESSING_PATH)
+# |__venv
+# |__my_django  (BASE_PROJECT_PATH)
+#    |
+#    |__django_docker  (DJANGO_PROJECT_PATH)
+#    |  |
+#    |  |__django_docker
+#    |  |__manage.py
+#    |
+#    |__requirements.txt
+#    |__Dockerfile
+ENV BASE_PROJECT_NAME="my_django"
+ENV DJANGO_PROJECT_NAME="django_docker"
+ENV PROCESSING_PATH="/home/ubuntu"
+ENV BASE_PROJECT_PATH="$PROCESSING_PATH/$BASE_PROJECT_NAME"
+ENV DJANGO_PROJECT_PATH="$BASE_PROJECT_PATH/$DJANGO_PROJECT_NAME"
 
-COPY requirements.txt ./my_django/
-COPY django_docker ./my_django/django_docker/
+WORKDIR $PROCESSING_PATH
+COPY requirements.txt $BASE_PROJECT_PATH/
+COPY $DJANGO_PROJECT_NAME $DJANGO_PROJECT_PATH
 
-RUN python3 -m venv ./venv
-ENV PATH="$PROCESS_PATH/venv/bin:$PATH"
-RUN source ./venv/bin/activate
-RUN python -m pip install -r ./my_django/requirements.txt
+RUN python3 -m venv $PROCESSING_PATH/venv
+ENV PATH="$PROCESSING_PATH/venv/bin:$PATH"
+RUN python -m pip install -r $BASE_PROJECT_PATH/requirements.txt
 
-WORKDIR $PROCESS_PATH/my_django/django_docker
+WORKDIR $DJANGO_PROJECT_PATH
 CMD ["python", "./manage.py", "runserver", "0.0.0.0:8000"]
