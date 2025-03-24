@@ -1,0 +1,27 @@
+services:
+  mydjq:
+    image: "mysql:latest"
+    container_name: mydjq
+    restart: always
+    ports:
+      - "9010:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - mydjqnw
+
+  mydjqadm:
+    image: "phpmyadmin:latest"
+    container_name: mydjqadm
+    restart: always
+    ports:
+      - "9020:80"
+    depends_on:
+      - mydjq
+    links:
+      - "mydjq:db"
+    networks:
+      - mydjqnw
+
+networks:
+  mydjqnw:
