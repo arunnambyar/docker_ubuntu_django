@@ -9,6 +9,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     networks:
       - mydjqnw
+    volumes:
+      - "mydjqv:/var/lib/mysql"
 
   mydjqadm:
     image: "phpmyadmin:latest"
@@ -25,3 +27,7 @@ services:
 
 networks:
   mydjqnw:
+
+volumes:
+  mydjqv:
+    driver: local
