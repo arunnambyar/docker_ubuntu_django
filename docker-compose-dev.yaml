@@ -1,14 +1,4 @@
 services:
-  mydj:
-    image: mydj:latest
-    container_name: mydj
-    ports:
-      - "9000:9000"
-    depends_on:
-      - mydjq
-    networks:
-      - mydjqnw
-
   mydjq:
     image: "mysql:latest"
     container_name: mydjq

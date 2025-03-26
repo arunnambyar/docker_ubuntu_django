@@ -2,9 +2,11 @@ FROM ubuntu:24.04
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && \
+    apt-get install pkg-config -y && \
     apt-get install python3 -y && \
     apt-get install python3-pip -y && \
-    apt-get install python3.12-venv -y
+    apt-get install python3.12-venv -y && \
+    apt-get install libmysqlclient-dev -y
 
 # dir structure below
 # /home/ubuntu  (PROCESSING_PATH)
@@ -29,4 +31,4 @@ ENV PATH="$PROCESSING_PATH/venv/bin:$PATH"
 RUN python -m pip install -r $DJANGO_PROJECT_PATH/requirements.txt
 
 WORKDIR $DJANGO_PROJECT_PATH
-CMD ["python", "./manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "./manage.py", "runserver", "0.0.0.0:9000"]
