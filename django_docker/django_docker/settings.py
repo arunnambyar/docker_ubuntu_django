@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,10 +80,8 @@ DATABASES = {
         'NAME': 'dj_dk_db',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'mydjq',
-        # 'HOST': '127.0.0.1',  # when used from local
-        'PORT': '3306'
-        # 'PORT': '9010'  # when trying from local
+        'HOST': os.getenv('HOST') or '127.0.0.1',
+        'PORT': os.getenv('PORT') or '9010'
     }
 }
 
