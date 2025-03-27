@@ -79,10 +79,10 @@ DATABASES = {
         'NAME': 'dj_dk_db',
         'USER': 'root',
         'PASSWORD': 'root',
-        # 'HOST': 'mydjq',
-        'HOST': '127.0.0.1',  # when used from local
-        # 'PORT': '3306'
-        'PORT': '9010'  # when trying from local
+        'HOST': 'mydjq',
+        # 'HOST': '127.0.0.1',  # when used from local
+        'PORT': '3306'
+        # 'PORT': '9010'  # when trying from local
     }
 }
 

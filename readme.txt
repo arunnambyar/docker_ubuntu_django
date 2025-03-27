@@ -31,3 +31,7 @@ There have 2 docker-compose files
 ALLOWED_HOSTS = ['*'] # is what I am using. Update it upto your requirements
 =============================================================================
     - without this settings, docker django server will not be reachable
+
+python manage.py starting before mysql
+=============================================================================
+    - so sleep added in manage.py
