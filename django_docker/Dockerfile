@@ -23,6 +23,7 @@ ENV DJANGO_PROJECT_NAME="django_docker"
 ENV DJANGO_PROJECT_PATH="$PROCESSING_PATH/$DJANGO_PROJECT_NAME"
 
 WORKDIR $PROCESSING_PATH
+COPY is_mysql_up.sh $DJANGO_PROJECT_PATH/
 COPY requirements.txt $DJANGO_PROJECT_PATH/
 COPY . $DJANGO_PROJECT_PATH/
 
@@ -31,4 +32,5 @@ ENV PATH="$PROCESSING_PATH/venv/bin:$PATH"
 RUN python -m pip install -r $DJANGO_PROJECT_PATH/requirements.txt
 
 WORKDIR $DJANGO_PROJECT_PATH
-CMD ["python", "./manage.py", "runserver", "0.0.0.0:9000"]
+ENTRYPOINT ["/bin/bash", "./is_mysql_up.sh"]
+# CMD ["python", "./manage.py", "runserver", "0.0.0.0:9000"]

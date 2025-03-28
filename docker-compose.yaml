@@ -6,6 +6,8 @@ services:
     environment:
       HOST: 'mydjq'  # mysql Host for django -> From docker and From local are different
       PORT: '3306'  # mysql port for django -> From docker and From local are different
+    depends_on:
+      - mydjq
 
   mydjq:
     image: "mysql:latest"
