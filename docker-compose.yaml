@@ -1,8 +1,10 @@
 services:
   mydj:
     image: mydj:latest
+    command:
+      - "0.0.0.0:9001"  # Push the command line arguments into ENTRYPOINT, bypass CMD
     ports:
-      - "9000:9000"
+      - "9000:9001"  # container CMD port will be updated by 'command'
     environment:
       HOST: 'mydjq'  # mysql Host for django -> From docker and From local are different
       PORT: '3306'  # mysql port for django -> From docker and From local are different

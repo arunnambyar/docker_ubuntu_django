@@ -33,4 +33,5 @@ RUN python -m pip install -r $DJANGO_PROJECT_PATH/requirements.txt
 
 WORKDIR $DJANGO_PROJECT_PATH
 ENTRYPOINT ["/bin/bash", "./is_mysql_up.sh"]
-# CMD ["python", "./manage.py", "runserver", "0.0.0.0:9000"]
+CMD ["0.0.0.0:9000"]
+# Default args for ENTRYPOINT is CMD
