@@ -1,4 +1,4 @@
-There have 2 docker-compose files
+* There have 2 docker-compose files
 =================================
     1. docker-compose.yaml:
     -----------------------
